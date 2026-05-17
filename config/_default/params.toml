@@ -18,9 +18,9 @@ SortBy              = "default"
     lastUpdated = ":date_full"
 
 [sidebar]
-    emoji    = "🍥"
-    subtitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    avatar   = "img/avatar.png"
+    emoji    = "🕯️"
+    subtitle = "Everything we attend to leaves an impression"
+    avatar   = "img/avatar.webp"
 
 [article]
     headingAnchor = false
