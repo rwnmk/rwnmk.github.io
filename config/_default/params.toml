@@ -11,7 +11,7 @@ SortBy              = "default"
 
 [footer]
     since      = 2026
-    customText = "Everything is alive, everything is interconnected"
+    customText = "Everything is alive, everything is interconnected."
 
 [dateFormat]
     published   = ":date_full"
@@ -34,24 +34,25 @@ SortBy              = "default"
 [widgets]
     homepage = [
         { type = "search" },
-        { type = "archives", params = { limit = 5 } },
+        # re-enable when it's worthwhile to
+        # { type = "archives", params = { limit = 5 } },
         { type = "categories", params = { limit = 10 } },
         { type = "tag-cloud", params = { limit = 10 } },
     ]
     page = [{ type = "toc" }]
 
-[opengraph.twitter]
-    site = ""
-    card = "summary_large_image"
+#[opengraph.twitter]
+#    site = ""
+#    card = "summary_large_image"
 
 [colorScheme]
     toggle  = true
     default = "auto"
 
 ## Comments
-[comments]
-    enabled  = true
-    provider = "disqus"
+#[comments]
+#    enabled  = true
+#    provider = "disqus"
 
     # See all the available configurations at https://github.com/CaiJimmy/hugo-theme-stack/blob/master/config/_default/params.toml
     # Copy the configurations you need from there and paste it here.
