@@ -10,8 +10,8 @@ favicon        = "img/favicon.png"
 SortBy              = "default"
 
 [footer]
-    since      = 2020
-    customText = ""
+    since      = 2026
+    customText = "Everything is alive, everything is interconnected"
 
 [dateFormat]
     published   = ":date_full"

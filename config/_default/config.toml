@@ -1,7 +1,7 @@
 # Change baseurl before deploy
-baseurl = "https://starter.stack.cai.im/"
-locale  = "en-us"
-title   = "Hugo Theme Stack Starter"
+baseurl = "https://rwnmk.github.io"
+locale  = "en-gb"
+title   = "Rwn's place"
 
 # Theme i18n support
 # See all available values at https://github.com/CaiJimmy/hugo-theme-stack/tree/master/i18n
@@ -12,7 +12,7 @@ defaultContentLanguage = "en"
 hasCJKLanguage = false
 
 # Change it to your Disqus shortname before using
-disqusShortname = "hugo-theme-stack"
+#disqusShortname = "hugo-theme-stack"
 
 [pagination]
     pagerSize = 5
