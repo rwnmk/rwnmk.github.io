@@ -1,0 +1,5 @@
+{{- /* The name a page shows as in the tree menu and terminal.
+       treeName wins; a post kept as a folder (posts/my-post/index.md) shows as my-post.md. */ -}}
+{{- $name := .File.LogicalName -}}
+{{- if eq .BundleType "leaf" -}}{{- $name = printf "%s.md" (path.Base .File.Dir) -}}{{- end -}}
+{{- return (.Params.treeName | default $name) -}}

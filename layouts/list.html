@@ -1,0 +1,11 @@
+{{ define "main" }}
+<section class="section">
+  <a class="back" href="{{ site.Home.RelPermalink }}">← cd ~</a>
+  {{ partial "cmdhead.html" (dict "cmd" (printf "ls -lt %s/" (path.Base .RelPermalink)) "level" 1) }}
+  <div class="posts">
+    {{- range .Pages.ByDate.Reverse }}
+    {{ partial "post-row.html" . }}
+    {{- end }}
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,8 @@
+{{- /* Usage: partial "cmdhead.html" (dict "cmd" "ls -lt posts/" "level" 2 "more" "/posts/" "moreText" "all posts →") */ -}}
+{{- $tag := printf "h%d" (.level | default 2) -}}
+<div class="cmd-head">
+  {{ printf "<%s>" $tag | safeHTML }}<span class="lambda" aria-hidden="true">λ</span> {{ .cmd }}{{ printf "</%s>" $tag | safeHTML }}
+  {{- with .more }}
+  <a class="more" href="{{ strings.TrimPrefix "/" . | relURL }}">{{ $.moreText }}</a>
+  {{- end }}
+</div>

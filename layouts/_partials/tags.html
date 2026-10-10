@@ -1,0 +1,8 @@
+{{- /* Tag chips. Without JS they link to /tags/<tag>/; with JS a click opens the terminal on `tags #<tag>`. */ -}}
+{{- with .GetTerms "tags" }}
+<div class="tags">
+  {{- range . }}
+  <a class="tagchip sq" href="{{ .RelPermalink }}" data-tag="#{{ .Data.Term }}">#{{ .Data.Term }}</a>
+  {{- end }}
+</div>
+{{- end }}

@@ -1,0 +1,13 @@
+{{- $items := partial "tree-items.html" .node -}}
+{{- $n := len $items -}}
+{{- range $i, $it := $items -}}
+  {{- $last := eq (add $i 1) $n -}}
+  {{- $on := and (not $it.page.Params.anchor) (eq $it.page.RelPermalink $.cur.RelPermalink) (eq $it.kind "file") -}}
+{{- $.prefix }}{{ if $last }}└── {{ else }}├── {{ end }}<a href="{{ $it.href }}"{{ if $on }} class="on" aria-current="page"{{ end }}>{{ $it.name }}{{ if $it.isDir }}/{{ end }}</a>{{ "\n" -}}
+  {{- if $it.isDir -}}
+    {{- $.s.Add "d" 1 -}}
+    {{- partial "tree-dir.html" (dict "node" $it "prefix" (printf "%s%s" $.prefix (cond $last "    " "│   ")) "cur" $.cur "s" $.s) -}}
+  {{- else -}}
+    {{- $.s.Add "f" 1 -}}
+  {{- end -}}
+{{- end -}}

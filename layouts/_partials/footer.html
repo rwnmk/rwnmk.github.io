@@ -1,0 +1,14 @@
+<footer id="contact" class="footer">
+  <div class="footer-links">
+    {{- with site.Params.social.github }}
+    <a class="icon-link" href="{{ . }}" rel="me"><i class="fa fa-brands fa-github" aria-hidden="true"></i>github</a>
+    {{- end }}
+    {{- with site.Params.social.email }}
+    <a class="icon-link" href="mailto:{{ . }}"><i class="fa fa-solid fa-at" aria-hidden="true"></i>email</a>
+    {{- end }}
+    {{- with site.Home.OutputFormats.Get "rss" }}
+    <a class="icon-link" href="{{ .RelPermalink }}"><i class="fa fa-solid fa-rss" aria-hidden="true"></i>rss</a>
+    {{- end }}
+  </div>
+  <span class="eof">-- EOF --</span>
+</footer>

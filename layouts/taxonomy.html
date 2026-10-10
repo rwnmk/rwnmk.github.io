@@ -1,0 +1,11 @@
+{{ define "main" }}
+<section class="section">
+  <a class="back" href="{{ site.Home.RelPermalink }}">← cd ~</a>
+  {{ partial "cmdhead.html" (dict "cmd" "tags" "level" 1) }}
+  <ul class="prose" style="list-style:none;padding:0;margin:0">
+    {{- range .Data.Terms.Alphabetical }}
+    <li><a href="{{ .Page.RelPermalink }}">#{{ .Page.Data.Term }}</a> <span class="meta">{{ .Count }} post{{ if ne .Count 1 }}s{{ end }}</span></li>
+    {{- end }}
+  </ul>
+</section>
+{{ end }}

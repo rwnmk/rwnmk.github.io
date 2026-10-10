@@ -1,0 +1,21 @@
+{{- /* Builds the terminal's file tree (same shape and names as the tree menu). */ -}}
+{{- $node := dict "name" .name "type" (cond .isDir "d" "f") -}}
+{{- $p := .page -}}
+{{- $url := $p.RelPermalink -}}
+{{- with $p.Params.anchor -}}{{- $url = printf "%s#%s" site.Home.RelPermalink . -}}{{- end -}}
+{{- $node = merge $node (dict "url" $url) -}}
+{{- if .isDir -}}
+  {{- $children := slice -}}
+  {{- range partial "tree-items.html" . -}}
+    {{- $children = $children | append (partial "fs-node.html" .) -}}
+  {{- end -}}
+  {{- $node = merge $node (dict "children" $children) -}}
+{{- else -}}
+  {{- $node = merge $node (dict
+      "title" $p.Title
+      "tags" ($p.Params.tags | default slice)
+      "date" (cond $p.Date.IsZero "" ($p.Date.Format "2006-01-02"))
+      "body" (strings.TrimSpace $p.RawContent)
+      "size" (len $p.RawContent)) -}}
+{{- end -}}
+{{- return $node -}}

@@ -1,0 +1,7 @@
+{{- $s := newScratch -}}
+{{- $s.Set "d" 0 -}}{{- $s.Set "f" 0 -}}
+<pre class="tree"><a class="root" href="{{ site.Home.RelPermalink }}">~/{{ site.Params.terminalHost | default "site" }}</a>{{ "\n" }}
+{{- partial "tree-dir.html" (dict "node" (dict "page" site.Home "kind" "section") "prefix" "" "cur" . "s" $s) -}}
+</pre>
+{{- $d := $s.Get "d" -}}{{- $f := $s.Get "f" }}
+<div class="tree-count">{{ $d }} director{{ if eq $d 1 }}y{{ else }}ies{{ end }}, {{ $f }} file{{ if ne $f 1 }}s{{ end }}</div>

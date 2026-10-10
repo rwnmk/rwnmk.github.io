@@ -1,0 +1,8 @@
+{{- /* Resolves a page's `image` front matter: a file in the post's own folder
+       (image: cover.png) or a site path (image: /images/x.png). Returns "" if unset. */ -}}
+{{- $url := "" -}}
+{{- with .Params.image -}}
+  {{- with $.Resources.GetMatch . -}}{{- $url = .RelPermalink -}}
+  {{- else -}}{{- $url = strings.TrimPrefix "/" . | relURL -}}{{- end -}}
+{{- end -}}
+{{- return $url -}}

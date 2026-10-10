@@ -1,0 +1,1 @@
+{{- partial "fs-node.html" (dict "page" site.Home "kind" "section" "name" "~" "isDir" true) | jsonify -}}

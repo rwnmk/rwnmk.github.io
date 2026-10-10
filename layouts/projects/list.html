@@ -1,0 +1,11 @@
+{{ define "main" }}
+<section class="section">
+  <a class="back" href="{{ site.Home.RelPermalink }}">← cd ~</a>
+  {{ partial "cmdhead.html" (dict "cmd" "ls projects/" "level" 1) }}
+  <div class="projects">
+    {{- range .Pages.ByWeight }}
+    {{ partial "project-card.html" . }}
+    {{- end }}
+  </div>
+</section>
+{{ end }}
