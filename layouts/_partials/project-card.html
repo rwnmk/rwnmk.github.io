@@ -1,6 +1,6 @@
 <div id="proj-{{ .File.ContentBaseName | default .File.Dir | path.Base }}" class="project sq">
   <div class="project-top">
-    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <h3><a class="card-link" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
     {{- with .Params.status }}
     <span class="badge sq {{ if eq (lower .) "live" }}badge-live{{ else }}badge-wip{{ end }}">{{ . }}</span>
     {{- end }}
