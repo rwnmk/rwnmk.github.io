@@ -210,3 +210,14 @@ html.no-js .ring, html.no-js .navring, html.no-js .termring, html.no-js .btn-ter
 .t-dir { color: var(--accent-tint); font-weight: 600; }
 .t-err { color: var(--err); }
 .t-hi { color: var(--white); font-weight: 600; }
+
+/* Project cards: the whole card opens the project page.
+   The title link stretches over the card; the repo/site link sits above it. */
+.project { position: relative; transition: border-color var(--fade), box-shadow var(--fade); }
+.project .card-link::after { content: ""; position: absolute; inset: 0; }
+.project .card-link:hover { text-decoration: none; }
+.project:hover { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.project .go { position: relative; z-index: 1; }
+/* Keyboard focus outlines the whole card rather than just the title */
+.project .card-link:focus-visible { outline: none; }
+.project:has(.card-link:focus-visible) { outline: 2px solid var(--trim); outline-offset: 2px; }
