@@ -7,13 +7,13 @@ build:
   list: local
 cards:
   - label: STACK
-    text: "C# · Blazor · T-SQL"
+    text: "C# · T-SQL · Rust · Go Clojure · Haskell"
     link: /stack/
   - label: TESTING
-    text: "Playwright · xUnit"
+    text: "Playwright · xUnit Manual QA"
     link: /testing/
   - label: READING
-    text: "K&R, 2nd ed."
+    text: "K&R · Nature of Code Cybernetics"
     link: /reading/
 ---
-Tester turned developer. I write Playwright suites in .NET, untangle T-SQL stored procedures, and spend my evenings in C, Emacs and far too many dotfiles.
+Manual and automation tester, adding development to my repertoire. By day I write Playwright suites in .NET, squint at stored procedures, and apply elbow grease to websites. By night I follow my interests, build little tools, and read.

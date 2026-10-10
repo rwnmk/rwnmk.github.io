@@ -21,4 +21,4 @@ SQL came first: SSMS and stored procedures, well before any C#.
 - **Zig, Odin, Jai** — systems languages
 - **C** — via K&R, in Emacs
 - **NixOS & flakes** — [notes]
-- **Performance** — [what draws you to it]
+- **Performance testing & tuning** — [what draws you to it]

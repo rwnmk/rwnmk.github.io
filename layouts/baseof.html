@@ -12,6 +12,7 @@
   <link rel="preload" href="{{ "fonts/roboto-mono-latin-400-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
   {{- $css := slice (resources.Get "css/syntax.css") (resources.Get "css/main.css") (resources.Get "css/activity.css") | resources.Concat "css/site.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   {{- with .OutputFormats.Get "rss" }}
   <link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">
   {{- end }}
