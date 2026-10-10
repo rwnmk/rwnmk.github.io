@@ -16,7 +16,7 @@ enableRobotsTXT = true
   # Footer links. Leave a value empty to hide that link.
   [params.social]
     github = "https://github.com/rwnmk"
-    email  = ""   # e.g. "you@example.com"
+    # Linkedin  = "https://www.linkedin.com/in/rowan-k-388498192/"   # e.g. "you@example.com"
 
 [taxonomies]
   tag = "tags"

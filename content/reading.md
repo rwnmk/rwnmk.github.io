@@ -1,6 +1,6 @@
 ---
 title: "Reading"
-lead: "[A line on what you read and why.]"
+lead: ""
 ---
 
 ## Now
@@ -14,6 +14,7 @@ lead: "[A line on what you read and why.]"
 - [ ] **C# in Depth** — [notes]
 - [ ] **Design Patterns** — [notes]
 - [ ] **Designing Data-Intensive Applications** — [notes]
+- [ ] **Nature of Code** - [notes]
 
 ## Stuck with me
 

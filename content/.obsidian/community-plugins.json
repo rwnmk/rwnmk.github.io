@@ -2,5 +2,6 @@
   "templater-obsidian",
   "dataview",
   "obsidian-linter",
-  "obsidian-paste-image-rename"
+  "obsidian-paste-image-rename",
+  "obsidian-git"
 ]
