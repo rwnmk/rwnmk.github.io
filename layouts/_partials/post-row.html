@@ -1,0 +1,13 @@
+<article id="post-{{ .File.ContentBaseName }}" class="post-row">
+  {{- with partial "image-url.html" . }}
+  <img class="thumb" src="{{ . }}" alt="" width="140" height="140" loading="lazy">
+  {{- else }}
+  <div class="thumb" aria-hidden="true">[POST IMAGE]</div>
+  {{- end }}
+  <div class="post-body">
+    <div class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time> · {{ .ReadingTime }} min read</div>
+    <h3 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{- with .Params.summary }}<p class="summary">{{ . }}</p>{{ end }}
+    {{ partial "tags.html" . }}
+  </div>
+</article>

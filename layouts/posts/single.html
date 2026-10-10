@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article class="page">
+  <div class="stack-sm">
+    <a class="back" href="{{ "posts/" | relURL }}">← cd ..</a>
+    {{ partial "cmdhead.html" (dict "cmd" (printf "cat posts/%s" (partial "file-name.html" .))) }}
+  </div>
+  <header class="stack-sm">
+    <div class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time> · {{ .ReadingTime }} min read</div>
+    <h1 class="post-page-title">{{ .Title }}</h1>
+    {{ partial "tags.html" . }}
+  </header>
+  {{- with partial "image-url.html" . }}
+  <img class="post-hero" src="{{ . }}" alt="">
+  {{- end }}
+  <div class="prose">{{ .Content }}</div>
+  {{- with .PrevInSection }}<a href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ end }}
+  {{- with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}
+</article>
+{{ end }}

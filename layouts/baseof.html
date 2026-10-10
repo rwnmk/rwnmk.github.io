@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale | default "en" }}" class="no-js{{ if .IsHome }} page-home{{ end }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . | plainify | truncate 160 }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
+  {{- /* Apply remembered menu state before first paint so the page doesn't jump. */}}
+  <script>
+    (function(){var d=document.documentElement;d.classList.remove('no-js');try{if(localStorage.getItem('nav-collapsed')==='1')d.classList.add('nav-collapsed')}catch(e){}})();
+  </script>
+  <link rel="preload" href="{{ "fonts/roboto-mono-latin-400-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+  {{- $css := slice (resources.Get "css/syntax.css") (resources.Get "css/main.css") (resources.Get "css/activity.css") | resources.Concat "css/site.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{- with .OutputFormats.Get "rss" }}
+  <link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">
+  {{- end }}
+  {{- with site.Home.OutputFormats.Get "rss" }}{{ if not ($.OutputFormats.Get "rss") }}
+  <link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">
+  {{- end }}{{ end }}
+</head>
+<body>
+<div id="top" class="shell">
+  <nav id="site-nav" class="side" aria-label="Site">
+    {{ partial "tree.html" . }}
+    <button class="btn-term sq" type="button" data-term-open>&gt;_ open terminal</button>
+  </nav>
+  <main class="content">
+    {{ block "main" . }}{{ end }}
+    {{ partial "footer.html" . }}
+  </main>
+</div>
+{{ partial "rings.html" . }}
+{{ partial "terminal.html" . }}
+{{- $js := resources.Get "js/site.js" | js.Build (dict "minify" true "target" "es2018") | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" data-fs="{{ "fs.json" | relURL }}" data-host="{{ site.Params.terminalHost | default "site" }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{{ define "main" }}
+<section class="section">
+  <a class="back" href="{{ "tags/" | relURL }}">← all tags</a>
+  {{ partial "cmdhead.html" (dict "cmd" (printf "tags #%s" .Data.Term) "level" 1) }}
+  <div class="posts">
+    {{- range .Pages.ByDate.Reverse }}
+    {{ partial "post-row.html" . }}
+    {{- end }}
+  </div>
+</section>
+{{ end }}

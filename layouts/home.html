@@ -1,0 +1,59 @@
+{{ define "main" }}
+{{- $about := site.GetPage "/about" }}
+<section id="about" class="about">
+  <div class="hero">
+    {{ partial "activity.html" . }}
+    <h1 class="hero-name">{{ replace (site.Params.author | default site.Title) " " "<br>" | safeHTML }}</h1>
+  </div>
+  {{- with $about }}
+  <div class="lead">{{ .Content }}</div>
+  {{- with .Params.cards }}
+  <div class="cards">
+    {{- range . }}
+    <a class="card sq" href="{{ strings.TrimPrefix "/" .link | relURL }}">
+      <div class="card-top"><span>{{ .label }}</span><span aria-hidden="true">→</span></div>
+      <div class="card-text">{{ .text }}</div>
+    </a>
+    {{- end }}
+  </div>
+  {{- end }}
+  {{- end }}
+</section>
+
+{{- $posts := where site.RegularPages "Section" "posts" }}
+{{- with $posts }}
+<section id="posts" class="section">
+  {{ partial "cmdhead.html" (dict "cmd" "ls -lt posts/" "more" "/posts/" "moreText" "all posts →") }}
+  <div class="posts">
+    {{- range first (site.Params.homePosts | default 3) $posts.ByDate.Reverse }}
+    {{ partial "post-row.html" . }}
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+
+{{- with site.GetPage "/projects" }}
+<section id="projects" class="section">
+  {{ partial "cmdhead.html" (dict "cmd" "ls projects/") }}
+  <div class="projects">
+    {{- range .Pages.ByWeight }}
+    {{ partial "project-card.html" . }}
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+
+{{- with site.GetPage "/now" }}
+<section id="now" class="section">
+  {{ partial "cmdhead.html" (dict "cmd" (printf "cat %s" (.Params.treeName | default "now.txt"))) }}
+  <pre class="now">
+    {{- range $i, $line := split (strings.TrimSpace .RawContent) "\n" -}}
+      {{- if $i }}{{ "\n" }}{{ end -}}
+      {{- if hasPrefix $line "[ ok ]" -}}<span class="ok">[ ok ]</span>{{ strings.TrimPrefix "[ ok ]" $line }}
+      {{- else if hasPrefix $line "[ .. ]" -}}<span class="wip">[ .. ]</span>{{ strings.TrimPrefix "[ .. ]" $line }}
+      {{- else -}}{{ $line }}{{- end -}}
+    {{- end -}}
+  </pre>
+</section>
+{{- end }}
+{{ end }}

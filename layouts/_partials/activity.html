@@ -1,0 +1,21 @@
+{{- /* GitHub contribution grid, drawn faintly behind the name.
+       Data comes from data/contributions.json (written by scripts/fetch_contributions.py
+       during the deploy). No data → renders nothing. */ -}}
+{{- with hugo.Data.contributions -}}
+{{- $weeks := .weeks -}}
+{{- $max := 0 -}}
+{{- range $weeks }}{{ range . }}{{ if gt .count $max }}{{ $max = .count }}{{ end }}{{ end }}{{ end -}}
+{{- $n := len $weeks -}}
+<div class="activity" aria-hidden="true">
+  {{- range $i, $w := $weeks }}
+  <div class="wk{{ if lt $i (sub $n 26) }} wk-old{{ end }}">
+    {{- range $w -}}
+      {{- $lvl := 0 -}}
+      {{- if and (gt .count 0) (gt $max 0) -}}{{- $lvl = int (math.Ceil (div (mul (float .count) 4) $max)) -}}{{- end -}}
+      <i class="day l{{ $lvl }}" style="grid-row:{{ add .weekday 1 }}"></i>
+    {{- end -}}
+  </div>
+  {{- end }}
+</div>
+<p class="visually-hidden">{{ .total }} GitHub contributions in the last year.</p>
+{{- end -}}

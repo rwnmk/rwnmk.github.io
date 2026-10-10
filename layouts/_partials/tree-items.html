@@ -1,0 +1,32 @@
+{{- /*
+  Returns the children of a tree node, sorted by name, as dicts:
+    name, page, kind ("section" | "bundle" | "file"), isDir, href
+  Input: dict "page" <page> "kind" <kind>
+  - Sections list their pages and subsections.
+  - Pages with `treeAsDir: true` (projects) show as <name>/README.md.
+  - `treeName` overrides a file's display name; `treeHidden: true` hides it.
+*/ -}}
+{{- $items := slice -}}
+{{- $p := .page -}}
+{{- if eq .kind "bundle" -}}
+  {{- $items = $items | append (dict "name" "README.md" "page" $p "kind" "file" "isDir" false) -}}
+{{- else -}}
+  {{- range $p.Pages -}}
+    {{- if and (in (slice "page" "section") .Kind) (not .Params.treeHidden) -}}
+      {{- if .IsSection -}}
+        {{- $items = $items | append (dict "name" (path.Base .RelPermalink) "page" . "kind" "section" "isDir" true) -}}
+      {{- else if .Params.treeAsDir -}}
+        {{- $items = $items | append (dict "name" (path.Base .File.Dir) "page" . "kind" "bundle" "isDir" true) -}}
+      {{- else -}}
+        {{- $items = $items | append (dict "name" (partial "file-name.html" .) "page" . "kind" "file" "isDir" false) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $out := slice -}}
+{{- range sort $items "name" -}}
+  {{- $href := .page.RelPermalink -}}
+  {{- with .page.Params.anchor -}}{{- $href = printf "%s#%s" site.Home.RelPermalink . -}}{{- end -}}
+  {{- $out = $out | append (merge . (dict "href" $href)) -}}
+{{- end -}}
+{{- return $out -}}

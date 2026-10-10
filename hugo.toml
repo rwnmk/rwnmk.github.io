@@ -1,0 +1,55 @@
+# Set this to your GitHub Pages URL, e.g. https://<username>.github.io/
+# (the deploy workflow overrides it with the real URL at build time)
+baseURL = "https://example.github.io/"
+locale = "en-GB"
+title = "Rowan Kinneavy"
+enableRobotsTXT = true
+
+[params]
+  author = "Rowan Kinneavy"
+  description = "Tester turned developer. Playwright, .NET, SQL, C and too many dotfiles."
+  # Shown in the terminal prompt: guest@<host>
+  terminalHost = "rowan"
+  # How many posts the home page lists
+  homePosts = 3
+
+  # Footer links. Leave a value empty to hide that link.
+  [params.social]
+    github = "https://github.com/rwnmk"
+    email  = ""   # e.g. "you@example.com"
+
+[taxonomies]
+  tag = "tags"
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[markup.highlight]
+  noClasses = false
+  style = "monokai"
+
+# The terminal reads /fs.json: every page's path, title, tags, URL and source text.
+[outputFormats.fs]
+  mediaType = "application/json"
+  baseName = "fs"
+  isPlainText = true
+  notAlternative = true
+
+[outputs]
+  home = ["html", "rss", "fs"]
+  section = ["html", "rss"]
+  taxonomy = ["html"]
+  term = ["html"]
+
+# Resolve ordinary markdown links and images the way Obsidian writes them:
+# [text](../other-post/index.md) → that page's URL, ![](cover.png) → the file in the post's folder.
+[markup.goldmark.renderHooks.link]
+  useEmbedded = "fallback"
+[markup.goldmark.renderHooks.image]
+  useEmbedded = "fallback"
+
+# Obsidian-only folders inside content/ that shouldn't become pages.
+[[module.mounts]]
+  source = "content"
+  target = "content"
+  files = ["! templates/**", "! dashboards/**"]

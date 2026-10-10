@@ -1,0 +1,14 @@
+/* "Unit-01": built from the site palette, for a #262626 background */
+.chroma { color: #cacaca; }
+.chroma .err { color: #e88b8b; }
+.chroma .k, .chroma .kd, .chroma .kn, .chroma .kr, .chroma .kp, .chroma .cp, .chroma .cpf { color: #cfa6dd; }
+.chroma .kt, .chroma .nc, .chroma .nn, .chroma .nb, .chroma .bp { color: #3bb71d; }
+.chroma .kc, .chroma .m, .chroma .mi, .chroma .mf, .chroma .mh, .chroma .il, .chroma .se, .chroma .sc { color: #f0a35e; }
+.chroma .nf, .chroma .fm, .chroma .nx { color: #ffffff; }
+.chroma .na, .chroma .nv, .chroma .vi, .chroma .nd { color: #e2c9ea; }
+.chroma .s, .chroma .s1, .chroma .s2, .chroma .sb, .chroma .sd, .chroma .sh, .chroma .si, .chroma .sx, .chroma .sr, .chroma .ss, .chroma .dl { color: #9fd98a; }
+.chroma .c, .chroma .c1, .chroma .cm, .chroma .ch, .chroma .cs { color: #8f8f8f; font-style: italic; }
+.chroma .o, .chroma .ow, .chroma .p { color: #a8a8a8; }
+.chroma .gd { color: #e88b8b; } .chroma .gi { color: #3bb71d; } .chroma .gh, .chroma .gu { color: #cfa6dd; font-weight: 600; }
+.chroma .hl { background-color: #3a3a3a; }
+.chroma .lnt, .chroma .ln { color: #6f6f6f; }
