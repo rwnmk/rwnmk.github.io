@@ -82,7 +82,7 @@ html.nav-collapsed .side { display: none; }
 
 /* ---------- about cards ---------- */
 .about { display: flex; flex-direction: column; gap: 20px; }
-.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; max-width: 760px; }
+/*.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; max-width: 760px; } */
 @media (max-width: 560px) { .cards { grid-template-columns: minmax(0, 1fr); } }
 .card { display: block; background: var(--surface); border: 1px solid var(--line); padding: 16px 18px; color: var(--fg); transition: border-color var(--fade), box-shadow var(--fade); }
 .card:hover { color: var(--fg); border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); text-decoration: none; }
@@ -102,8 +102,11 @@ html.nav-collapsed .side { display: none; }
 .tagchip { display: inline-block; border: 1px solid var(--trim); color: var(--trim); padding: 2px 10px; transition: color var(--fade), background-color var(--fade); }
 .tagchip:hover { background: var(--trim); color: var(--ink-on-trim); text-decoration: none; }
 
+/* align cards and projects*/
+.cards, .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+
 /* ---------- projects ---------- */
-.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+/*.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; } */
 .project { background: var(--surface); border: 1px solid var(--line); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
 .project-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .project-top h3 { font-size: 20px; font-weight: 600; }
