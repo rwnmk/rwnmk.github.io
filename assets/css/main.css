@@ -221,9 +221,11 @@ html.no-js .ring, html.no-js .navring, html.no-js .termring, html.no-js .btn-ter
 /* Keyboard focus outlines the whole card rather than just the title */
 .project .card-link:focus-visible { outline: none; }
 .project:has(.card-link:focus-visible) { outline: 2px solid var(--trim); outline-offset: 2px; }
+.project-cover { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; box-shadow: var(--shadow-sm); }
 
 /* Narrow screens: centre the footer so the rings in the bottom-left corner don't cover it */
 @media (max-width: 895px) {
   .footer { flex-direction: column; align-items: center; gap: 12px; }
   .footer-links { justify-content: center; }
 }
+

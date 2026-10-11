@@ -1,10 +1,14 @@
 ---
 title: "grimonomy"
+date: 2026-10-11
+draft: false
+tags: ["dnd", "python"]
+image: cover.webp
 status: WIP
 link: ""          # e.g. the repo URL
 linkLabel: "repo"
 weight: 1
-summary: "Radial cladograms with Newick trees, but for DND Spells"
+summary: "Radial cladograms with Newick trees, but for homebrew DnD"
 ---
 
 # Grimonomy

@@ -6,7 +6,12 @@
     {{- end }}
   </div>
   {{- with .Params.summary }}<p>{{ . }}</p>{{ end }}
+  {{- with .Params.image }}{{ with $.Resources.GetMatch . }}
+  {{- $img := .Fill "260x200 Center webp q80" }}
+  <img class="project-cover" src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="" loading="lazy">
+  {{- end }}{{ end }}
   {{- with .Params.link }}
   <a class="go" href="{{ . }}">→ {{ $.Params.linkLabel | default "link" }}</a>
   {{- end }}
 </div>
+
