@@ -1,0 +1,80 @@
+/* omgwhy: page-only styles. Uses the site tokens from main.css. */
+.omg-ac { color: var(--accent-tint); font-weight: 700; }
+.omg-note { color: var(--muted); }
+.omg-tool { display: flex; flex-direction: column; gap: 40px; }
+.omg-tool[hidden] { display: none; }
+
+/* ---------- title card ---------- */
+/* Pure black and a squeezed bold serif, like the episode cards. The only loud thing on the page. */
+.omg-card { background: #000; color: #fff; box-shadow: var(--shadow-sm); padding: 24px 28px 30px; min-height: 280px; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; overflow: hidden;
+  font-family: 'Times New Roman', Times, 'Liberation Serif', 'Nimbus Roman', serif; font-weight: 700; }
+.omg-card > span { display: block; transform-origin: left bottom; overflow-wrap: anywhere; }
+.omg-card-ep { margin-bottom: auto; font-size: 22px; transform: scaleX(.86); }
+.omg-card-who { font-size: clamp(44px, 10vw, 84px); line-height: .92; transform: scale(.8, 1.12); width: 125%; }
+.omg-card-why { font-size: clamp(30px, 6.4vw, 54px); line-height: 1; transform: scaleX(.8); width: 125%; }
+.omg-card.is-blank .omg-card-who, .omg-card.is-blank .omg-card-why { color: #5a5a5a; }
+/* On a new entry the card cuts to white for a beat, then back. */
+.omg-card.cut { animation: omg-cut .32s steps(1, end); }
+@keyframes omg-cut { 0% { background: #fff; color: #000; } 45% { background: #000; color: #fff; } }
+@media (prefers-reduced-motion: reduce) { .omg-card.cut { animation: none; } }
+
+/* ---------- form ---------- */
+.omg-form { display: flex; flex-direction: column; gap: 24px; }
+.omg-field { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.omg-field > label, .omg-field > legend { padding: 0; font-size: 14px; color: var(--muted); }
+.omg-field > legend { margin-bottom: 8px; }
+.omg-input { width: 100%; max-width: 360px; min-height: 44px; padding: 10px 14px; background: var(--surface-term); border: 1px solid var(--line); color: var(--white); font: inherit; caret-color: var(--trim); transition: border-color var(--fade); }
+.omg-input::placeholder { color: var(--faint); }
+.omg-input:focus { border-color: var(--trim); outline: none; }
+.omg-input:focus-visible { outline: 2px solid var(--trim); outline-offset: 2px; }
+.omg-input[aria-invalid="true"] { border-color: var(--err); }
+
+.omg-seg { display: flex; flex-wrap: wrap; gap: 12px; }
+.omg-opt { position: relative; flex: 1 1 160px; max-width: 220px; min-height: 52px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); background: var(--surface); color: var(--fg); font-weight: 600; font-size: 16px; cursor: pointer; transition: color var(--fade), background-color var(--fade), border-color var(--fade); }
+.omg-opt input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.omg-opt-h:hover { border-color: var(--accent); }
+.omg-opt-p:hover { border-color: var(--trim); }
+.omg-opt-h:has(input:checked) { background: var(--accent); border-color: var(--accent); color: var(--white); }
+.omg-opt-p:has(input:checked) { background: var(--trim); border-color: var(--trim); color: var(--ink-on-trim); }
+.omg-opt:has(input:focus-visible) { outline: 2px solid var(--trim); outline-offset: 2px; }
+
+.omg-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.omg-err { color: var(--err); font-size: 14px; }
+.omg-err:empty { display: none; }
+
+/* ---------- tally ---------- */
+.omg-empty { color: var(--muted); }
+.omg-empty[hidden], .omg-tally-wrap[hidden], .section[hidden] { display: none; }
+.omg-tally-wrap { display: flex; flex-direction: column; gap: 16px; }
+.omg-totals { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; color: var(--muted); }
+.omg-key { display: inline-flex; align-items: center; gap: 8px; }
+.omg-key::before { content: ""; width: 10px; height: 10px; border-radius: 2px; }
+.omg-key-h::before { background: var(--accent); }
+.omg-key-p::before { background: var(--trim); }
+.omg-key b { color: var(--white); font-weight: 600; }
+
+.omg-tally { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.omg-row { display: grid; grid-template-columns: minmax(0, 16ch) minmax(0, 1fr) 3ch 3ch; align-items: center; gap: 14px; }
+.omg-row-name { color: var(--white); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.omg-bar { display: flex; height: 12px; background: var(--surface-2); border-radius: 2px; overflow: hidden; }
+.omg-bar-h { background: var(--accent); }
+.omg-bar-p { background: var(--trim); }
+.omg-n { text-align: right; font-variant-numeric: tabular-nums; }
+.omg-n-h { color: var(--accent-tint); }
+.omg-n-p { color: var(--trim); }
+@media (max-width: 560px) {
+  .omg-row { grid-template-columns: minmax(0, 1fr) 3ch 3ch; row-gap: 6px; }
+  .omg-bar { grid-column: 1 / -1; grid-row: 2; }
+}
+
+/* ---------- history ---------- */
+.omg-history { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+.omg-history li { display: grid; grid-template-columns: 13ch minmax(0, 1fr) auto; gap: 14px; }
+.omg-history time { color: var(--muted); }
+.omg-history .who { color: var(--fg); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.omg-history .why-h { color: var(--accent-tint); }
+.omg-history .why-p { color: var(--trim); }
+.omg-tools { display: flex; flex-wrap: wrap; gap: 24px; }
+.omg-link { min-height: 44px; padding: 0; border: 0; background: none; color: var(--trim); font: inherit; font-size: 14px; cursor: pointer; transition: color var(--fade); }
+.omg-link:hover { color: var(--fg); text-decoration: underline; }
+.omg-danger { color: var(--err); }

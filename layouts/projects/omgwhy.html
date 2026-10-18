@@ -1,0 +1,74 @@
+{{ define "main" }}
+{{- $css := resources.Get "css/omgwhy.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+<article class="page omg">
+  <div class="stack-sm">
+    <a class="back" href="{{ site.Home.RelPermalink }}#projects">← cd ~/projects</a>
+    {{ partial "cmdhead.html" (dict "cmd" "./omgwhy" "level" 2) }}
+  </div>
+
+  <header class="stack-sm">
+    <div class="project-top">
+      <h1 class="page-title">{{ .Title }}</h1>
+      {{- with .Params.status }}
+      <span class="badge sq {{ if eq (lower .) "live" }}badge-live{{ else }}badge-wip{{ end }}">{{ . }}</span>
+      {{- end }}
+    </div>
+    <p class="lead"><span class="omg-ac">O</span>bjective <span class="omg-ac">M</span>easurement of <span class="omg-ac">G</span>ames <span class="omg-ac">W</span>hich <span class="omg-ac">H</span>ad <span class="omg-ac">Y</span>ou in.</p>
+  </header>
+
+  <noscript><p class="omg-note">The logger needs JavaScript. The write-up below works without it.</p></noscript>
+
+  <section class="omg-tool" data-omg hidden>
+    {{- /* The title card: the one loud thing on the page. */}}
+    <div class="omg-card sq" aria-live="polite" data-omg-card>
+      <span class="omg-card-ep" data-omg-ep>GAME:00</span>
+      <span class="omg-card-who" data-omg-who>Who</span>
+      <span class="omg-card-why" data-omg-why>Why.</span>
+    </div>
+
+    <form class="omg-form" data-omg-form autocomplete="off" novalidate>
+      <div class="omg-field">
+        <label for="omg-name">Who?</label>
+        <input id="omg-name" class="omg-input sq" name="name" type="text" maxlength="24" list="omg-names" placeholder="name" required spellcheck="false" data-omg-name>
+        <datalist id="omg-names" data-omg-names></datalist>
+      </div>
+
+      <fieldset class="omg-field omg-reasons">
+        <legend>Why?</legend>
+        <div class="omg-seg">
+          <label class="omg-opt omg-opt-h sq"><input type="radio" name="reason" value="h" checked><span>Hubris</span></label>
+          <label class="omg-opt omg-opt-p sq"><input type="radio" name="reason" value="p"><span>Positioning</span></label>
+        </div>
+      </fieldset>
+
+      <div class="omg-actions">
+        <button class="btn-term sq" type="submit">+ Add</button>
+        <p class="omg-err" role="alert" data-omg-err></p>
+      </div>
+    </form>
+
+    <div class="section">
+      {{ partial "cmdhead.html" (dict "cmd" "sort -rn blame.txt" "level" 2) }}
+      <p class="omg-empty" data-omg-empty>No losses logged</p>
+      <div class="omg-tally-wrap" data-omg-tally-wrap hidden>
+        <div class="omg-totals" data-omg-totals></div>
+        <ol class="omg-tally" data-omg-tally></ol>
+      </div>
+    </div>
+
+    <div class="section" data-omg-history-wrap hidden>
+      {{ partial "cmdhead.html" (dict "cmd" "tail history.log" "level" 2) }}
+      <ol class="omg-history" data-omg-history></ol>
+      <div class="omg-tools">
+        <button class="omg-link" type="button" data-omg-undo>Undo last entry</button>
+        <button class="omg-link omg-danger" type="button" data-omg-clear>Clear all data</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="prose">{{ .Content }}</div>
+</article>
+{{- $js := resources.Get "js/omgwhy.js" | js.Build (dict "minify" true "target" "es2018") | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{ end }}
