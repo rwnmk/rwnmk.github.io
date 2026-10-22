@@ -1,5 +1,5 @@
 ---
-title: "apex-comp-analyser"
+title: "apex-buddy"
 date: 2026-10-21
 status: WIP
 link: ""          # e.g. the repo URL
@@ -106,3 +106,7 @@ Plans are now in the site:
 - **Review before features.** The PR-style review found real user-facing bugs, like share links overwriting your saved picks, that playing with the tool hadn't revealed.
 - **Model the game the way players think.** The biggest improvement didn't come from tweaking weights. It came from adding the concepts your group already uses: plans, roles, ring position and counters.
 - **Prototype, then build.** Ranking every comp offline made it possible to argue with the numbers before committing to UI.
+
+## TODO
+
+Rewrite this for apex-buddy
